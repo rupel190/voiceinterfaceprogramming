@@ -22,14 +22,14 @@
          "tag": "placement",
          "patterns": ["What can you do?", "Can you place something?", "Can you move things?", "Can you do something for me?", "Please place something", "Put a fruit somewhere", "Grab a fruit", "Take a fruit, would you?" ],
          "responses": ["I can move, apples, bananas and oranges!" ],
-		 "context_set": "placesContext"
+		 "context_set": "placementContext"
         },
 		
         {
          "tag": "fruit",
          "patterns": ["Move an apple", "Take a banana", "Orange" ],
          "responses": ["Oki, in what place should I put it?" ],
-		 "context_filter": "placesContext"
+		 "context_filter": "placementContext"
 		 "context_set": "fruitContext"
         },
 	
@@ -38,14 +38,14 @@
          "patterns": ["a table", "the shelf", "a floor", "an ground", "desk", "box", "kitchensink"],
          "responses": ["Good, and in what direction?"],
          "context_filter": "fruitContext",
-		 "context_set": "directionsContext"
+		 "context_set": "placesContext"
         },
 		
 		{
          "tag": "directions",
          "patterns": ["behind","behind", "on top of","above","on top","on", "below", "below", "under", "to the left of", "left", "left of", "to the right of", "right", "right of" ],
          "responses": ["Great great, fine. I've moved the fruity McFruitson!"],
-         "context_filter": "directionsContext"
+         "context_filter": "placesContext"
         }
 		
 		
