@@ -16,32 +16,40 @@
          "patterns": ["Thanks", "Thank you", "That's helpful", "Perfect, thank you so much"],
          "responses": ["Happy to help!", "Any time!", "My pleasure"]
         },
-        {
-         "tag": "fruit",
-         "patterns": ["melon" ] ,
-         "responses": ["where do i put the fruit"],
-		 "context_set": "placement"
-        },
-		{
-         "tag": "place",
-         "patterns": ["table" ],
-         "responses": ["where do i put the fruit"],
-		 "context_filter": "placement",
-		 "context_set": "placement"
-        },
-		{
-         "tag": "direction",
-         "patterns": ["on" ],
-         "responses": ["where do i put the fruit"],
-		 "context_filter": placement",
-		 "context_set": "placement"
+		
+       
+         {
+         "tag": "placement",
+         "patterns": ["What can you do?", "Can you place something?", "Can you move things?", "Can you do something for me?", "Please place something", "Put a fruit somewhere", "Grab a fruit", "Take a fruit, would you?" ],
+         "responses": ["I can move, apples, bananas and oranges!" ],
+		 "context_set": "placesContext"
         },
 		
         {
-         "tag": "status",
-         "patterns": ["tell me about your status", "what have you done", "status" ],
-         "responses": ["I have placed the fruit where to told me"],
-         "context_set": "placement"
+         "tag": "fruit",
+         "patterns": ["Move an apple", "Take a banana", "Orange" ],
+         "responses": ["Oki, in what place should I put it?" ],
+		 "context_set": "placesContext"
+        },
+	
+        {
+         "tag": "places",
+         "patterns": ["a table", "the shelf", "a floor", "an ground", "desk", "box", "kitchensink"],
+         "responses": ["Good, and in what direction?"],
+         "context_filter": "places",
+		 "context_set": "directionsContext"
+        },
+		
+		{
+         "tag": "directions",
+         "patterns": ["behind","behind", "on top of","above","on top","on", "below", "below", "under", "to the left of", "left", "left of", "to the right of", "right", "right of" ],
+         "responses": ["Great great, fine. I've moved the fruity McFruitson!"],
+         "context_filter": "directionsContext"
         }
+		
+		
+		
+		
+		
    ]
 }
