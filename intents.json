@@ -19,21 +19,21 @@
         {
          "tag": "fruit",
          "patterns": ["melon" ] ,
-         "responses": ["where do i put the fruit"]
+         "responses": ["where do i put the fruit"],
 		 "context_set": "placement"
         },
 		{
          "tag": "place",
          "patterns": ["table" ],
-         "responses": ["where do i put the fruit"]
-		 "context_filter": "placement"
+         "responses": ["where do i put the fruit"],
+		 "context_filter": "placement",
 		 "context_set": "placement"
         },
 		{
          "tag": "direction",
          "patterns": ["on" ],
-         "responses": ["where do i put the fruit"]
-		 "context_filter": placement"
+         "responses": ["where do i put the fruit"],
+		 "context_filter": placement",
 		 "context_set": "placement"
         },
 		
