@@ -29,7 +29,7 @@
          "tag": "fruit",
          "patterns": ["Move an apple", "Take a banana", "Orange" ],
          "responses": ["Oki, in what place should I put it?" ],
-		 "context_filter": "placementContext"
+		 "context_filter": "placementContext",
 		 "context_set": "fruitContext"
         },
 	
