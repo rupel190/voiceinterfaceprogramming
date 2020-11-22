@@ -29,14 +29,15 @@
          "tag": "fruit",
          "patterns": ["Move an apple", "Take a banana", "Orange" ],
          "responses": ["Oki, in what place should I put it?" ],
-		 "context_set": "placesContext"
+		 "context_filter": "placesContext"
+		 "context_set": "fruitContext"
         },
 	
         {
          "tag": "places",
          "patterns": ["a table", "the shelf", "a floor", "an ground", "desk", "box", "kitchensink"],
          "responses": ["Good, and in what direction?"],
-         "context_filter": "places",
+         "context_filter": "fruitContext",
 		 "context_set": "directionsContext"
         },
 		
