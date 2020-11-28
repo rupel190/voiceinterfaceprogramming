@@ -20,7 +20,7 @@ def hello():
     
 @server.route("/detectIntent", methods=['POST'])
 def chat():
-    print('this is the chaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaat')
+
     # unescaped as is
     answer = chatbot.response(request.get_data().decode('utf-8'))
     if answer is None:

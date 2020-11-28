@@ -317,8 +317,9 @@ def classify(sentence):
     return return_list
 
 # (3) generates a contextualized response for a specific user
-def response(sentence, user_id='123', show_details=True): # default was false
+def response(sentence, user_id='123', show_details=False):
     results = classify(sentence)
+    resp = 'undefined response'
     # if we have a classification then find the matching intent tag
     if results:
         # loop as long as there are matches to process
@@ -326,19 +327,21 @@ def response(sentence, user_id='123', show_details=True): # default was false
             for i in intents['intents']:
                 # find a tag matching the first result
                 if i['tag'] == results[0][0]:
-                    # set context for this intent if necessary
-                    if 'context_set' in i:
-                        if show_details: print ('context:', i['context_set'])
-                        context[user_id] = i['context_set']
+                  
+                  # check if this intent is contextual and applies to this user's conversation
+                  if not 'context_filter' in i or (user_id in context and 'context_filter' in i and i['context_filter'] == context[user_id]):
+                      if show_details: print ('tag:', i['tag'])
+                      # a random response from the intent
+                      resp = (random.choice(i['responses']))
 
-                    # check if this intent is contextual and applies to this user's conversation
-                    if not 'context_filter' in i or \
-                        (user_id in context and 'context_filter' in i and i['context_filter'] == context[user_id]):
-                        if show_details: print ('tag:', i['tag'])
-                        # a random response from the intent
-                        return print(random.choice(i['responses']))
-
+                  # set context if available
+                  if 'context_set' in i:
+                      if show_details: print ('context:', i['context_set'])
+                      context[user_id] = i['context_set']
+                                    
+                  return resp
             results.pop(0)
+    return 'no response'
 
 #response('Hey')
 #classify('fruit')
