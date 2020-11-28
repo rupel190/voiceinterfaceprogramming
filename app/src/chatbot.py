@@ -286,44 +286,8 @@ print('\nOur prediction is:\n')
 for r in results:
     print('=> ', classes[r[0]], round(r[1],4))
 
-########################################################################
-# Let's create a needy data structure to 
-# (1) hold and track the user context
-# (2) classifies our sentence to a class
-# (3) generates a contextualized response for a specific user 
-#        based on 3 elements
-#       (a) class with highest prediction propability
-#       (b) a specific user id
-#       (c) context set
-########################################################################
-
-# (1) hold and track the user context
-context = {}
 
 
-# (2) classifies our sentence to a class
-def classify(sentence):
-    # generate probabilities from the model
-    results = model.predict(np.array([bow(sentence, words)]))[0]
-    # filter out predictions below a threshold
-    results = [[i,r] for i,r in enumerate(results) if r>ERROR_THRESHOLD]
-    # sort by strength of probability
-    results.sort(key=lambda x: x[1], reverse=True)
-    return_list = []
-    for r in results:
-        return_list.append((classes[r[0]], r[1]))
-    # return tuple of intent and probability
-    return return_list
-
-  
-
-# (3) generates a contextualized response for a specific user
-def response(sentence, user_id='123', show_details=False):
-    global resp
-    results = classify(sentence)
-    resp = 'undefined response'
-
-    # if we have a classification then find the matching intent tag
 ########################################################################
 # Let's create a needy data structure to 
 # (1) hold and track the user context
@@ -353,8 +317,7 @@ def classify(sentence):
     return return_list
 
 # (3) generates a contextualized response for a specific user
-def response(sentence, user_id='123', show_details=False):
-    return 'python is shit'
+def response(sentence, user_id='123', show_details=True): # default was false
     results = classify(sentence)
     # if we have a classification then find the matching intent tag
     if results:

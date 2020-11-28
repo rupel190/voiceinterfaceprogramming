@@ -20,8 +20,9 @@ def hello():
     
 @server.route("/detectIntent", methods=['POST'])
 def chat():
+    print('this is the chaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaat')
     # unescaped as is
-    answer = chatbot.response('Hey')
+    answer = chatbot.response(request.get_data().decode('utf-8'))
     if answer is None:
         return 'Did not get an answer. Great. Just great.'
     return answer
