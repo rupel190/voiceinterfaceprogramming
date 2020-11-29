@@ -16,13 +16,7 @@
          "patterns": ["Thanks", "Thank you", "That's helpful", "Perfect, thank you so much", "Cool" ],
          "responses": ["Happy to help!", "Any time!", "My pleasure"]
         },
-		{
-         "tag": "undefined",
-		 "patterns": [ ],
-         "responses": ["I beg your pardon?", "What?!", "Please repeat that. Differently."]
-		},
-       
-         {
+        {
          "tag": "placement",
          "patterns": ["What can you do?", "Can you place something?", "Can you move things?", "Can you do something for me?", "Please place something", "Put a fruit somewhere", "Grab a fruit", "Take a fruit, would you?", "Help", "Info", "I want to place a fruit", "I'd like to place something", "can you put a fruit somewhere", "I need you to place something", "Can you do something", "Can you place something somewhere", "Would you place a fruit", "Please place something", "Please place a fruit", "Can you do something for me" ],
          "responses": ["I can move, apples, bananas, kiwis and oranges!" ],
