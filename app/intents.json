@@ -18,6 +18,7 @@
         },
 		{
          "tag": "undefined",
+		 "patterns": [ ],
          "responses": ["I beg your pardon?", "What?!", "Please repeat that. Differently."]
 		},
        
