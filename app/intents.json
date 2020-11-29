@@ -2,32 +2,35 @@
   "intents": [
         {
          "tag": "greeting",
-         "patterns": ["Hi", "Hey", "Ho", "What's up", "How are you", "Is anyone there?", "Hello", "Good day"],
+         "patterns": ["Hi", "Hey", "Ho", "What's up", "How are you", "Is anyone there?", "Hello", "Good day", "Yo", "Wassup"],
          "responses": ["Hello, thanks for visiting", "Good to see you again", "Hi there, how can I help?"],
          "context_set": ""
         },
         {
          "tag": "goodbye",
-         "patterns": ["Bye", "Bye bye", "Ciao","See you later", "Goodbye"],
+         "patterns": ["Bye", "Bye bye", "Ciao", "See you later", "Goodbye"],
          "responses": ["Happy to talk to you later!","Thanks for showing up!", "Bye! Looking forward to seeing you again soon!"]
         },
         {
          "tag": "thanks",
-         "patterns": ["Thanks", "Thank you", "That's helpful", "Perfect, thank you so much"],
+         "patterns": ["Thanks", "Thank you", "That's helpful", "Perfect, thank you so much", "Cool" ],
          "responses": ["Happy to help!", "Any time!", "My pleasure"]
         },
-		
+		{
+         "tag": "undefined",
+         "responses": ["I beg your pardon?", "What?!", "Please repeat that. Differently."]
+		},
        
          {
          "tag": "placement",
-         "patterns": ["What can you do?", "Can you place something?", "Can you move things?", "Can you do something for me?", "Please place something", "Put a fruit somewhere", "Grab a fruit", "Take a fruit, would you?" ],
-         "responses": ["I can move, apples, bananas and oranges!" ],
+         "patterns": ["What can you do?", "Can you place something?", "Can you move things?", "Can you do something for me?", "Please place something", "Put a fruit somewhere", "Grab a fruit", "Take a fruit, would you?", "Help", "Info", "I want to place a fruit", "I'd like to place something", "can you put a fruit somewhere", "I need you to place something", "Can you do something", "Can you place something somewhere", "Would you place a fruit", "Please place something", "Please place a fruit", "Can you do something for me" ],
+         "responses": ["I can move, apples, bananas, kiwis and oranges!" ],
 		 "context_set": "placementContext"
         },
 		
         {
          "tag": "fruit",
-         "patterns": ["Move an apple", "Take a banana", "Orange" ],
+         "patterns": ["Move an apple", "Take a banana", "Orange", "Move an apple", "a kiwi", "Put the apple somewhere", "place an apple around the table", "put a kiwi inside it", "take a banana", "use a banana", "take an orange", "place an apple", "put a banana" ],
          "responses": ["Oki, in what place should I put it?" ],
 		 "context_filter": "placementContext",
 		 "context_set": "fruitContext"
@@ -35,7 +38,7 @@
 	
         {
          "tag": "places",
-         "patterns": ["a table", "the shelf", "a floor", "an ground", "desk", "box", "kitchensink"],
+         "patterns": ["a table", "the shelf", "a floor", "an ground", "container", "a rectangle", "crate", "case", "chest", "rack", "the shelf", "a floor", "the table", "desk", "box", "kitchensink", "sink" ],
          "responses": ["Good, and in what direction?"],
          "context_filter": "fruitContext",
 		 "context_set": "placesContext"
@@ -43,7 +46,7 @@
 		
 		{
          "tag": "directions",
-         "patterns": ["behind","behind", "on top of","above","on top","on", "below", "below", "under", "to the left of", "left", "left of", "to the right of", "right", "right of" ],
+         "patterns": ["behind", "behind", "on top of", "above", "on top", "on", "below", "under", "to the left of", "left", "left of", "to the right of", "right", "right of" ],
          "responses": ["Great great, fine. I've moved the fruity McFruitson!"],
          "context_filter": "placesContext"
         }
