@@ -317,9 +317,8 @@ def classify(sentence):
     return return_list
 
 # (3) generates a contextualized response for a specific user
-def response(sentence, user_id='123', show_details=True):
+def response(sentence, user_id='123', show_details=True, resp='Beg your pardon?'):
     results = classify(sentence)
-    resp = 'undefined' 
 
     # if we have a classification then find the matching intent tag
     if results:
