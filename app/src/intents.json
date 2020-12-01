@@ -2,32 +2,46 @@
   "intents": [
         {
          "tag": "greeting",
-         "patterns": ["Hi", "Hey", "Ho", "What's up", "How are you", "Is anyone there?", "Hello", "Good day"],
+         "patterns": ["Hi", "Hey", "Ho", "What's up", "How are you", "Is anyone there?", "Hello", "Good day", "What’s happening", "How’s it going?", "Good evening",
+		  "Hey, boo", "How are you?", "Nice to meet you!", "Long time no see", "What’s the good word?", "What’s new?", "Look who it is!", "How have you been?",
+		  "Nice to see you again.", "Greetings and salutations!", "How are you doing today?", "What have you been up to?", "How are you feeling today?", 
+		  "Look what the cat dragged in!", "Good afternoon, sir, how are you today?" ],
          "responses": ["Hello, thanks for visiting", "Good to see you again", "Hi there, how can I help?"],
          "context_set": ""
         },
         {
          "tag": "goodbye",
-         "patterns": ["Bye", "Bye bye", "Ciao","See you later", "Goodbye"],
+         "patterns": ["Bye", "Bye bye", "Ciao","See you later", "Goodbye", "See you soon", "Talk to you later", "I've got to get going", "I must be going", "Take it easy", "I'm off",
+		  "Have a nice day", "I look forward to our next meeting", "Until", "Take care", "It was nice to see you again", "It was nice seeing you", "Goodnight", "Catch you later", "Later", "Laters",
+		  "Peace out", "I'm out", "I'm out of here", "I gotta jet", "I gotta take off", "I gotta hit the road", "I gotta head out" ],
          "responses": ["Happy to talk to you later!","Thanks for showing up!", "Bye! Looking forward to seeing you again soon!"]
         },
         {
          "tag": "thanks",
-         "patterns": ["Thanks", "Thank you", "That's helpful", "Perfect, thank you so much"],
+         "patterns": ["Thanks", "Thank you", "That's helpful", "Perfect, thank you so much", "I really appreciate it.", "You shouldn't have.", "That's very kind", "I don't know what to say!",
+		 "You're the best", "I owe you one", "You rock.", "What would I do without you?", "To say thank you is not enough.", "I can't thank you enough", "I'm so grateful for", 
+		 "I'm so thankful for", "Many thanks for", "I truly appreciate", "Thank you ever so much for", "It's kind of you to", "Thank you for going through the trouble to", "Thank you for taking the time to", 
+		 "I'm eternally grateful for", "I cannot thank you enough for", "I want you to know how much I value", "Words cannot describe how grateful I am for", "Please accept my deepest thanks for", 
+		 "Your support is greatly appreciated", "I'd like to express my appreciation for", "thank you for your kind consideration", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ],
          "responses": ["Happy to help!", "Any time!", "My pleasure"]
         },
 		
        
          {
          "tag": "placement",
-         "patterns": ["What can you do?", "Can you place something?", "Can you move things?", "Can you do something for me?", "Please place something", "Put a fruit somewhere", "Grab a fruit", "Take a fruit, would you?" ],
+         "patterns": ["Are you pondering what I'm pondering?", "What can you do?", "Can you place something?", "Can you move things?", "Can you do something for me?", "Please place something",
+		 "Put a fruit somewhere", "Grab a fruit", "Take a fruit, would you?", "What is your purpose", "Is there a reason you exist?", "What's your plan", "What are you up to?",
+		 "Give me your ruleset", "Commands", "help", "Info", "Inform me about your functionality", "Do you have specific functions", "Tell me about your inner workings", "Give me some information about yourself",
+	     "What do you like to do", "Is there some explanation of your abilities", "Are you able to perform", "Is it possible you", "Explain to me" ],
          "responses": ["I can move, apples, bananas and oranges!" ],
 		 "context_set": "placementContext"
         },
 		
         {
          "tag": "fruit",
-         "patterns": ["Move an apple", "Take a banana", "Orange" ],
+         "patterns": ["Move an apple", "Take a banana", "Orange", "take an orange", "use a pineapple", "I'm choosing an apple", "kiwi sounds good", "strawberry would be fine", "i want to have the blueberries",
+		  "give me some of those limes", "lemon it is!", "can i have a lemon", "give me a bunch of grapes", "what about those oranges", "I'm looking at the strawberries", "Bananas it is", "I just need those raspberries",
+		  "A single grape will suffice", "Mango all the way", "I will take a seasonal apple", "Is avocado a fruit?", "I need lots of blackberries", "A blackberry sounds nice", "Maybe a Kiwi", "What about a blackberry?"],
          "responses": ["Oki, in what place should I put it?" ],
 		 "context_filter": "placementContext",
 		 "context_set": "fruitContext"
@@ -35,7 +49,10 @@
 	
         {
          "tag": "places",
-         "patterns": ["a table", "the shelf", "a floor", "an ground", "desk", "box", "kitchensink"],
+         "patterns": ["a table", "the shelf", "a floor", "an ground", "desk", "box", "use the kitchensink", "i choose a box", "put it on the bed", "the door would be a good place", "place it around the table",
+		 "what about the stove", "can you use the shelf", "I'd like to see it on the ground", "The box sound great", "The desk sounds nice", "Floor is ok", "Table would be fine", "Can you choose the box",
+		 "I'm thinking about the shelf", "What about the floor", "Is it okay to use the box?", "Just use the table", "I guess the floor", "I think it should be the table", "I thought of taking the box",
+		 "Maybe the shelf", "I don't know, the floor?", "Desk is sufficient", "Just the ground" ],
          "responses": ["Good, and in what direction?"],
          "context_filter": "fruitContext",
 		 "context_set": "placesContext"
@@ -43,7 +60,10 @@
 		
 		{
          "tag": "directions",
-         "patterns": ["behind","behind", "on top of","above","on top","on", "below", "below", "under", "to the left of", "left", "left of", "to the right of", "right", "right of" ],
+         "patterns": ["behind","behind", "on top of","above","on top","on", "below", "below", "under", "to the left of", "left", "left of", "to the right of", "right", "right of", "on the", "in a", "on a",
+			"put it on top, will you", "I'd like you to choose the top", "What about just putting it behind", "It should be places on the left", "Place it below", "Above it goes", "Can you use the right side?,
+			"Left of it is okay", "On the right looks like a good spot", "The left side looks fine", "Put it on top I think", "You should place it below", "Above would be a good place", "Can you put it inside?",
+			"Use your intuition to place it on the right", "If you can place it on top", "How about putting it in front of it", "What do you think about below", "Under the thing please" ],
          "responses": ["Great great, fine. I've moved the fruity McFruitson!"],
          "context_filter": "placesContext"
         }
