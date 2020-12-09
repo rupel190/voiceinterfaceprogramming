@@ -22,7 +22,7 @@
 		 "You're the best", "I owe you one", "You rock.", "What would I do without you?", "To say thank you is not enough.", "I can't thank you enough", "I'm so grateful for", 
 		 "I'm so thankful for", "Many thanks for", "I truly appreciate", "Thank you ever so much for", "It's kind of you to", "Thank you for going through the trouble to", "Thank you for taking the time to", 
 		 "I'm eternally grateful for", "I cannot thank you enough for", "I want you to know how much I value", "Words cannot describe how grateful I am for", "Please accept my deepest thanks for", 
-		 "Your support is greatly appreciated", "I'd like to express my appreciation for", "thank you for your kind consideration", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ],
+		 "Your support is greatly appreciated", "I'd like to express my appreciation for", "thank you for your kind consideration" ],
          "responses": ["Happy to help!", "Any time!", "My pleasure"]
         },
 		
@@ -41,7 +41,7 @@
          "tag": "fruit",
          "patterns": ["Move an apple", "Take a banana", "Orange", "take an orange", "use a pineapple", "I'm choosing an apple", "kiwi sounds good", "strawberry would be fine", "i want to have the blueberries",
 		  "give me some of those limes", "lemon it is!", "can i have a lemon", "give me a bunch of grapes", "what about those oranges", "I'm looking at the strawberries", "Bananas it is", "I just need those raspberries",
-		  "A single grape will suffice", "Mango all the way", "I will take a seasonal apple", "Is avocado a fruit?", "I need lots of blackberries", "A blackberry sounds nice", "Maybe a Kiwi", "What about a blackberry?"],
+		  "A single grape will suffice", "Mango all the way", "I will take a seasonal apple", "Is avocado a fruit?", "I need lots of blackberries", "A blackberry sounds nice", "Maybe a Kiwi", "What about a blackberry?" ],
          "responses": ["Oki, in what place should I put it?" ],
 		 "context_filter": "placementContext",
 		 "context_set": "fruitContext"
@@ -61,7 +61,7 @@
 		{
          "tag": "directions",
          "patterns": ["behind","behind", "on top of","above","on top","on", "below", "below", "under", "to the left of", "left", "left of", "to the right of", "right", "right of", "on the", "in a", "on a",
-			"put it on top, will you", "I'd like you to choose the top", "What about just putting it behind", "It should be places on the left", "Place it below", "Above it goes", "Can you use the right side?,
+			"put it on top, will you", "I'd like you to choose the top", "What about just putting it behind", "It should be places on the left", "Place it below", "Above it goes", "Can you use the right side?",
 			"Left of it is okay", "On the right looks like a good spot", "The left side looks fine", "Put it on top I think", "You should place it below", "Above would be a good place", "Can you put it inside?",
 			"Use your intuition to place it on the right", "If you can place it on top", "How about putting it in front of it", "What do you think about below", "Under the thing please" ],
          "responses": ["Great great, fine. I've moved the fruity McFruitson!"],
