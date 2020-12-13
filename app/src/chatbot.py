@@ -288,6 +288,168 @@ for r in results:
 
 
 
+
+
+# Symspell 
+!pip install symspellpy
+
+# Speelinng Correction
+from symspellpy.symspellpy import SymSpell, Verbosity
+from tqdm.notebook import tqdm
+import re, string, json
+from itertools import islice
+import pkg_resources
+
+max_edit_distance_dictionary= 3 
+prefix_length = 4
+
+spellchecker = SymSpell(max_edit_distance_dictionary, prefix_length)
+
+# Load word frequency dictionary 
+dictionary_path = pkg_resources.resource_filename(
+    "symspellpy", "frequency_dictionary_en_82_765.txt")
+spellchecker.load_dictionary(dictionary_path, term_index=0, count_index=1)
+
+# Print out first 5 elements to show dictionary is successfully loaded
+print(list(islice(spellchecker.words.items(), 5)))
+
+# Inspired by article https://towardsdatascience.com/text-normalization-7ecc8e084e31
+# and examples taken from https://colab.research.google.com/drive/1U_C_4wAtlWQdaA84yVwHUCdkvQWEd7r9 
+
+def _reduce_exaggerations(text):
+  # Auxiliary function to help with exxagerated words.
+  # Examples: woooooords -> words,  yaaaaaaaaaaaaaaay -> yay
+  correction = str(text)
+  return re.sub(r'([\w])\1+', r'\1', correction)
+
+def is_numeric(text):
+  for char in text:
+    if not (char in "0123456789" or char in ",%.$"):
+      return False
+  return True
+
+def spell_correction(sentence_list, max_edit_distance_dictionary= 3, prefix_length = 4):
+  # Load word frequency dictionary 
+  dictionary_path = pkg_resources.resource_filename(
+  "symspellpy", "frequency_dictionary_en_82_765.txt")
+  spellchecker.load_dictionary(dictionary_path, term_index=0, count_index=1)
+  norm_sents = []
+  print("Spell correcting")
+  for sentence in tqdm(sentence_list):
+      norm_sents.append(spell_correction_text(sentence,
+                                              spellchecker,
+                                              max_edit_distance_dictionary,
+                                              prefix_length))
+  return norm_sents
+
+def spell_correction_text(text, 
+                          spellchecker, 
+                          max_edit_distance_dictionary= 3,
+                          prefix_length = 4):
+  """
+  This function does very simple spell correction normalization using 
+  pyspellchecker module. It works over a tokenized sentence and only the 
+  token representations are changed.
+  """
+  if len(text) < 1:
+      return ""
+  #Spell checker config
+  max_edit_distance_lookup = 2
+  suggestion_verbosity = Verbosity.TOP # TOP, CLOSEST, ALL
+  #End of Spell checker config
+  token_list = text.split()
+  for word_pos in range(len(token_list)):
+      word = token_list[word_pos]
+      if word is None:
+          token_list[word_pos] = ""
+          continue
+      if not '\n' in word and word not in string.punctuation and not is_numeric(word) and not (word.lower() in spellchecker.words.keys()):
+          suggestions = spellchecker.lookup(word.lower(), suggestion_verbosity, max_edit_distance_lookup)
+          #Checks first uppercase to conserve the case.
+          upperfirst = word[0].isupper()
+          #Checks for correction suggestions.
+          if len(suggestions) > 0:
+              correction = suggestions[0].term
+              replacement = correction
+          #We call our _reduce_exaggerations function if no suggestion is found. Maybe there are repeated chars.
+          else:
+              replacement = _reduce_exaggerations(word)
+          #Takes the case back to the word.
+          if upperfirst:
+              replacement = replacement[0].upper()+replacement[1:]
+          word = replacement
+          token_list[word_pos] = word
+  return " ".join(token_list).strip()
+
+  sentence_original="in te dhird qarter oflast jear he had elarned aoubt namials"
+  sentence_corrected = spell_correction_text(sentence_original,
+                                            spellchecker, 
+                                            max_edit_distance_dictionary= 10,
+                                            prefix_length = 1)
+  print("Original:  " + sentence_original)
+  print("Corrected: " + sentence_corrected)
+
+from spacy.lookups import Lookups
+from spacy.lemmatizer import Lemmatizer
+
+# Lemmatization function
+def lemmatize(sentence_list, nlp):
+    new_norm=[]
+    print("Lemmatizing Sentences")
+    for sentence in tqdm(sentence_list):
+        new_norm.append(lemmatize_text(sentence, nlp).strip())
+    return new_norm
+
+# Lemmatization is language dependent hence we need to pass Spacy "nlp" object 
+def lemmatize_text(sentence, nlp):
+    sent = ""
+    doc = nlp(sentence)
+    for token in doc:
+        if '@' in token.text:
+            sent+=" @MENTION"
+        elif '#' in token.text:
+            sent+= " #HASHTAG"
+        else:
+            sent+=" "+token.lemma_
+    return sent
+
+# Order? Remove stop words before lemmatizing maybe?
+def nlpPipeline(sentence):
+  from spacy.lang.en.stop_words import STOP_WORDS
+  import spacy
+  nlp = spacy.load("en_core_web_sm")
+  tokens_filtered = []
+  tokens_stemmed = []
+  tokens_noduplicates = []
+
+  # Spelling correction
+  sentence_spelling = spell_correction_text(sentence, spellchecker, max_edit_distance_dictionary= 10, prefix_length = 1)
+  print('Spelling corrected sentence: ', sentence_spelling)
+  # Lemmatize
+  sentence_lemmas = lemmatize_text(sentence_spelling, nlp)
+  print('Lemmatized sentence: ', sentence_lemmas)
+  # Tokenize, Remove puncuation, Remove stop words
+  doc = nlp(sentence_lemmas)
+  for token in doc:
+    if not token.is_punct and token not in STOP_WORDS:
+      tokens_filtered.append(token.text)
+  print('Filtered tokens: ', tokens_filtered)
+  # Stem (Snowball Stemmer)
+  from nltk.stem.snowball import SnowballStemmer
+  stemmer = SnowballStemmer(language='english')
+  for token in tokens_filtered:
+    tokens_stemmed.append(stemmer.stem(token))
+  print('Stemmed tokens: ', tokens_stemmed)
+  # Remove duplicates
+  tokens_noduplicates = tokens_stemmed
+  tokens_noduplicates = sorted(list(set(tokens_noduplicates)))
+  print('Unduplicated tokens: ', tokens_noduplicates)
+  return tokens_noduplicates
+
+nlpPipeline('Uhm, this might be a better exemplörry sentence using a new sentence with mice?!');
+
+
+
 ########################################################################
 # Let's create a needy data structure to 
 # (1) hold and track the user context

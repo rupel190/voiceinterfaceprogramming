@@ -16,3 +16,7 @@ curl localhost:5000/detectIntent -X POST -d "CRATE"
 curl localhost:5000/detectIntent -X POST -d "inside of it"
 ```
 
+---
+pip3 install spacy tqdm 
+python3 -m spacy download en
+
