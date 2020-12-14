@@ -62,6 +62,10 @@
 		 "patterns": [
 			"Move an [apple, fruit]", 
 			"Take a [banana, fruit]", 
+			"Take the [banana, fruit] and move it",
+			"Use the [banana, fruit] for something",
+			"Take something like a [banana, fruit]",
+			"Grab a [banana, fruit]",
 			"[Orange, fruit]", 
 			"take an orange", 
 			"use a [pineapple, fruit]", 
