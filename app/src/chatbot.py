@@ -27,6 +27,8 @@ import base64
 import requests
 import numpy as np
 import json
+from spacy.lookups import Lookups
+from spacy.lemmatizer import Lemmatizer
 #from google.colab import files
 
 ######################################################################
@@ -291,7 +293,7 @@ for r in results:
 
 
 # Symspell 
-!pip install symspellpy
+#!pip install symspellpy
 
 # Speelinng Correction
 from symspellpy.symspellpy import SymSpell, Verbosity
@@ -389,8 +391,7 @@ def spell_correction_text(text,
   print("Original:  " + sentence_original)
   print("Corrected: " + sentence_corrected)
 
-from spacy.lookups import Lookups
-from spacy.lemmatizer import Lemmatizer
+
 
 # Lemmatization function
 def lemmatize(sentence_list, nlp):
