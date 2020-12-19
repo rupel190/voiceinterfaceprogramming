@@ -343,7 +343,7 @@
 				"[learn] [vegetable] is a vegetable",
 				"[learn] [place] is a place",
 				"[learn] [direction] is a direction",
-				"[learn] [speed] is a speed",
+				"[learn] [speed] is a speed"
 			],
 			"responses": ["I learned that <thing> is a <thing>!"],
 			"context_filter": "teachingContext"
