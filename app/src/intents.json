@@ -161,7 +161,7 @@
 				"Use the [fruit] for something",
 				"Take something like a [fruit]",
 				"Grab a [fruit]",
-				"[Orange, fruit]",
+				"[fruit]",
 				"take an orange",
 				"use a [fruit]",
 				"I'm choosing an [fruit]",
@@ -197,7 +197,6 @@
 				"the [place]",
 				"a [place]",
 				"an [place]",
-				"[place]",
 				"[place]",
 				"use the [place]",
 				"i choose a [place]",
@@ -345,7 +344,6 @@
 				"[learn] [place] is a place",
 				"[learn] [direction] is a direction",
 				"[learn] [speed] is a speed",
-				"[learn] [learn] is a mnemonic"
 			],
 			"responses": ["I learned that <thing> is a <thing>!"],
 			"context_filter": "teachingContext"
@@ -353,7 +351,6 @@
 
 		{
 			"tag": "listEntities",
-
 			"patterns": [
 				"What sort of [] do you know?",
 				"What kind of [] do you know?",
