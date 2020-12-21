@@ -114,7 +114,7 @@
 				"Goodbye",
 				"til next time",
 				"until next time",
-				"i will come again!"
+				"i will come again!",
 				"see ya later, alligator",
 				"fare thee well",
 				"smoke me a kipper, i'll be back for breakfast",
@@ -284,11 +284,11 @@
 				"Would you mind showing me",
 				"Can you do a little thing",
 				"Give me a hand with this, will you",
-				"Lend me a hand with this, will you?"
+				"Lend me a hand with this, will you?",
 				"could you spare a moment",
 				"I wonder if you could help me with this",
 				"Could you help me for a second",
-				"Can you give me a hand with this"
+				"Can you give me a hand with this",
 				"Come on, just help me"
 			],
 			"responses": ["I can move fruits and veggies to specific locations at certain speeds, I can learn new words and I can show you my what I already know."],
@@ -356,7 +356,7 @@
 				"I'm looking at the [vegetable]",
 				"[vegetable] it is",
 				"I just need those [vegetable]",
-				"A single [vegetable] will suffice",
+				"A single [vegetable] will suffice"
 			],
 			"responses": ["Oki, in what place should I put the vegetable?"],
 			"context_filter": "placementContext",
@@ -460,7 +460,7 @@
 				"[speed] the pace",
 				"[speed] the pace",
 				"transport [speed]",
-				"navigate at a [speed] speed"
+				"navigate at a [speed] speed",
 				"This is too quick for me, please do it [speed].",
 			  "[speed] please.",
 			  "[speed] down please.",
