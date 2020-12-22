@@ -10,7 +10,8 @@ import base64
 import requests
 import numpy as np
 import json
-from google.colab import files
+from os import path
+#from google.colab import files
 
 ######################################################################
 # Things we need for NLP
@@ -26,8 +27,8 @@ import spacy
 from spacy.lookups import Lookups
 
 # load the English web corpus small which we just downloaded 
-nlp = spacy.load("en_core_web_sm")
-
+#nlp = spacy.load("en_core_web_sm")
+nlp = spacy.blank('en')
 ######################################################################
 # things we need for Tensorflow
 ######################################################################
@@ -100,7 +101,7 @@ def replacementLists(intents, pattern, replacements):
     # save list for the values of each type
     replacementType = placeholder.group().replace('[', '').replace(']', '')
     # special case for empty brackets
-    if replacementType is '': 
+    if replacementType == '': 
       # use the replacementtype structure here
       placeholderValues = intents['replacementTypes']
     else:
@@ -349,7 +350,8 @@ def nlpPipelineSentence(sentence):
   from spacy.lang.en.stop_words import STOP_WORDS
   import spacy
   import re
-  nlp = spacy.load("en_core_web_sm")
+  #nlp = spacy.load("en_core_web_sm")
+  #nlp = spacy.blank("en")
   tokens_filtered = []
   tokens_stemmed = []
   tokens_noduplicates = []
@@ -387,6 +389,9 @@ def nlpPipelineSentence(sentence):
 
 def nlpPipelineIntents(intents):
   import itertools
+  global words
+  global classes
+  global documents
   classes = []
   words = []
   documents = []
@@ -613,8 +618,16 @@ def train_intents(words, classes, documents):
 ####################################################################################
 import random
 
+
 # specify the training data and the number of training iteration
 def train_ner(data, iterations = 40, nlp = spacy.blank('en')): # creates blank Language class
+    
+    model_path = './spacy_training_model'
+    # quick impl load
+    if path.exists(model_path):
+      return ner.from_disk(model_path)
+    
+    
     # spacy.blank('en') creates blank Language class
     training_data = data
     # create the built-in pipeline components and add them to the pipeline
@@ -648,6 +661,10 @@ def train_ner(data, iterations = 40, nlp = spacy.blank('en')): # creates blank L
                     sgd=optimizer,  # callable to update weights
                     losses=losses)
             print(losses)
+            
+    # quick impl save
+    ner.to_disk(model_path)
+            
     return nlp
 
 def find_entities_per_ner(unmodified_sentence):
@@ -792,9 +809,9 @@ def train_all(original_intents):
   classesWordsDocuments = nlpPipelineIntents(annotated_intents)
 
   # Intent training with pipelined intents
-  classes = classesWordsDocuments[0]
-  words = classesWordsDocuments[1]
-  documents = classesWordsDocuments[2]
+  #classes = classesWordsDocuments[0]
+  #words = classesWordsDocuments[1]
+  #documents = classesWordsDocuments[2]
   train_intents(words, classes, documents)
 
   # Pure gold-parsed training data in addition to the intents
@@ -803,7 +820,7 @@ def train_all(original_intents):
   print('NER Training data:', NER_TRAINING_DATA)
   # Train NER
   print('Execute Train NER for: ', NER_TRAINING_DATA)
-  train_ner(NER_TRAINING_DATA, iterations = 40)
+  train_ner(NER_TRAINING_DATA, iterations = 1) # reset to 40 or sth
 
   return classesWordsDocuments
 
@@ -825,8 +842,8 @@ def fetch_intent_json():
 
 # classifies our sentence to a class
 def classify(sentence):
-    global classes
-    global words
+    #global classes
+    #global words
     ERROR_THRESHOLD=0.0001
     
     # generate probabilities from the model
@@ -978,8 +995,9 @@ requiredEntities = {
 original_intents = fetch_intent_json()
 print('Original intents:', original_intents)
 
+print('Training everything. Takes few (dozen) minutes.')
 classesWordsDocuments = train_all(original_intents)
-print('Model:', model)
+#print('Model:', model)
 
 #classes = classesWordsDocuments[0]
 #words = classesWordsDocuments[1]

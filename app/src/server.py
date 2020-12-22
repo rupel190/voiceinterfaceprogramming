@@ -15,7 +15,7 @@ def chat():
 
     # variables used in response should be held here but can't be quickly changed
     sentence = request.get_data().decode('utf-8')
-    answer = chatbot.response()
+    answer = chatbot.response(sentence)
     
     #if answer is None:
     #    return 'Did not get an answer.

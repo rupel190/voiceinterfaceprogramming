@@ -1,9 +1,10 @@
 requests==2.22.0
 Flask==1.1.2
-keras==2.4.3
+keras
 nltk==3.5
-numpy==1.19.0
+numpy
 pyth==0.6.0
-tensorflow==2.3.1
+tensorflow
 sklearn
 symspellpy
+spacy
